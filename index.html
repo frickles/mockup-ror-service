@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rör-Service — Komplett VVS i Söderhamn & Stockholm</title>
+  <meta name="description" content="Rör-Service erbjuder komplett VVS-service, ROT-renoveringar, nyinstallationer och akutjour i Söderhamn och Stockholm. Ring 070-621 30 33.">
+  <meta name="keywords" content="VVS, rörmokare, Söderhamn, Stockholm, ROT-renovering, akutjour, avloppspumpar, nyinstallation">
+  <meta property="og:title" content="Rör-Service — Komplett VVS i Söderhamn & Stockholm">
+  <meta property="og:description" content="Professionell VVS-service med lång erfarenhet. ROT-renoveringar, nyinstallationer och akutjour.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ror-service.se/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=630&fit=crop">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 50: '#e8edf4', 100: '#c5d0e3', 200: '#9fb3d1', 300: '#7896bf', 400: '#5a80b2', 500: '#3c6aa5', 600: '#2d5487', 700: '#1e3a5f', 800: '#152a45', 900: '#0c1a2b' },
+            copper: { 50: '#fef3ea', 100: '#fce0c8', 200: '#f9c9a0', 300: '#f5b178', 400: '#f19a50', 500: '#e87722', 600: '#c5621a', 700: '#a24e14', 800: '#7f3b0f', 900: '#5c2a0a' },
+            slate: { 50: '#f8f9fa', 100: '#f1f3f5', 200: '#e9ecef', 300: '#dee2e6', 400: '#ced4da' }
+          },
+          fontFamily: {
+            display: ['"DM Serif Display"', 'serif'],
+            body: ['"Outfit"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+    /* Skip to content - WCAG */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 9999;
+      background: #e87722; color: #fff; padding: 0.75rem 1.5rem;
+      font-weight: 600; text-decoration: none; border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* Hero diagonal clip */
+    .hero-clip { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+    @media (max-width: 768px) { .hero-clip { clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%); } }
+
+    /* Geometric accent shapes */
+    .geo-accent {
+      position: absolute; border: 2px solid rgba(232, 119, 34, 0.2);
+      border-radius: 2px; pointer-events: none;
+    }
+
+    /* Animated underline for nav */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #e87722;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link:focus::after { width: 100%; }
+
+    /* Card hover lift */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(30, 58, 95, 0.12);
+    }
+
+    /* Number accent */
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      background: linear-gradient(135deg, #e87722, #f19a50);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Copper line divider */
+    .copper-line {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, #e87722, #f5b178);
+      border-radius: 2px;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Form focus ring - WCAG */
+    input:focus, textarea:focus, select:focus {
+      outline: 3px solid #e87722; outline-offset: 2px;
+    }
+    input[type="checkbox"]:focus { outline: 3px solid #e87722; outline-offset: 2px; }
+
+    /* CTA pulse */
+    @keyframes subtle-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232, 119, 34, 0.3); }
+      50% { box-shadow: 0 0 0 12px rgba(232, 119, 34, 0); }
+    }
+    .cta-pulse { animation: subtle-pulse 3s ease-in-out infinite; }
+
+    /* Noise texture overlay */
+    .noise-overlay::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat; pointer-events: none; z-index: 1;
+    }
+
+    /* Mobile nav */
+    .mobile-nav { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* Pipe decorative element */
+    .pipe-deco {
+      width: 4px; background: linear-gradient(180deg, #e87722 0%, #1e3a5f 100%);
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-white text-navy-800">
+
+  <!-- Skip to content — WCAG 2.1 AA -->
+  <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+
+  <!-- NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20" aria-label="Huvudnavigering">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="Rör-Service — Till startsidan">
+        <div class="w-10 h-10 bg-copper-500 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-display text-xl text-navy-700 leading-none">Rör-Service</span>
+          <span class="block text-[10px] tracking-[0.25em] uppercase text-navy-400 font-medium">VVS Sedan 1990</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#tjanster" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Tjänster</a>
+        <a href="#om-oss" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Om oss</a>
+        <a href="#kontakt" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Kontakt</a>
+        <a href="tel:0706213033" class="inline-flex items-center gap-2 bg-copper-500 hover:bg-copper-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/25">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+          070-621 30 33
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden p-2 text-navy-700" id="menu-toggle" aria-label="Öppna meny" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Nav Panel -->
+    <div class="mobile-nav fixed inset-y-0 right-0 w-72 bg-navy-700 shadow-2xl z-50 flex flex-col p-8 md:hidden" id="mobile-menu" role="dialog" aria-label="Mobilmeny">
+      <button class="self-end p-2 text-white mb-8" id="menu-close" aria-label="Stäng meny">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a href="#tjanster" class="text-white/90 hover:text-copper-400 text-lg font-medium py-3 transition-colors mobile-nav-link">Tjänster</a>
+      <a href="#om-oss" class="text-white/90 hover:text-copper-400 text-lg font-medium py-3 transition-colors mobile-nav-link">Om oss</a>
+      <a href="#kontakt" class="text-white/90 hover:text-copper-400 text-lg font-medium py-3 transition-colors mobile-nav-link">Kontakt</a>
+      <div class="mt-auto">
+        <a href="tel:0706213033" class="flex items-center gap-3 bg-copper-500 text-white px-5 py-3 rounded-lg font-semibold justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+          Ring oss
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero-clip relative bg-navy-700 noise-overlay min-h-[95vh] flex items-center overflow-hidden">
+      <!-- Background image — BYT TILL KUNDENS EGEN BILD -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&h=1000&fit=crop&q=80"
+          alt="Professionell rörmokare som arbetar med kopparrör"
+          class="w-full h-full object-cover opacity-20"
+          loading="eager"
+        >
+        <div class="absolute inset-0 bg-gradient-to-br from-navy-900/80 via-navy-700/60 to-navy-800/80"></div>
+      </div>
+
+      <!-- Geometric accents -->
+      <div class="geo-accent w-40 h-40 top-24 right-[15%] rotate-12 hidden lg:block" aria-hidden="true"></div>
+      <div class="geo-accent w-24 h-24 bottom-32 left-[10%] -rotate-6 hidden lg:block" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24">
+        <div class="max-w-3xl">
+          <!-- Badge -->
+          <div class="reveal inline-flex items-center gap-2 bg-copper-500/15 border border-copper-500/30 rounded-full px-4 py-1.5 mb-8">
+            <span class="w-2 h-2 bg-copper-400 rounded-full animate-pulse"></span>
+            <span class="text-copper-300 text-sm font-medium">Akutjour tillgänglig dygnet runt</span>
+          </div>
+
+          <h1 class="reveal reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
+            VVS-service du kan
+            <span class="relative inline-block">
+              <span class="relative z-10">lita på</span>
+              <span class="absolute bottom-1 left-0 right-0 h-3 bg-copper-500/30 -rotate-1" aria-hidden="true"></span>
+            </span>
+          </h1>
+
+          <p class="reveal reveal-delay-2 text-lg sm:text-xl text-navy-200 max-w-xl mb-10 font-light leading-relaxed">
+            Komplett rörmokeri i Söderhamn och Stockholm. Från akuta reparationer till ROT-renoveringar — vi löser det åt dig, snabbt och professionellt.
+          </p>
+
+          <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4">
+            <a href="#kontakt" class="cta-pulse inline-flex items-center justify-center gap-2 bg-copper-500 hover:bg-copper-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-copper-500/20 hover:-translate-y-0.5">
+              Begär offert
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+            <a href="tel:0706213033" class="inline-flex items-center justify-center gap-2 border-2 border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 hover:bg-white/5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+              070-621 30 33
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="reveal reveal-delay-4 mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x divide-white/10 bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10">
+          <div class="text-center px-4">
+            <div class="stat-number text-4xl lg:text-5xl font-bold">30+</div>
+            <div class="text-navy-300 text-sm mt-1">Års erfarenhet</div>
+          </div>
+          <div class="text-center px-4">
+            <div class="stat-number text-4xl lg:text-5xl font-bold">2</div>
+            <div class="text-navy-300 text-sm mt-1">Kontor i Sverige</div>
+          </div>
+          <div class="text-center px-4">
+            <div class="stat-number text-4xl lg:text-5xl font-bold">24/7</div>
+            <div class="text-navy-300 text-sm mt-1">Akutjour</div>
+          </div>
+          <div class="text-center px-4">
+            <div class="stat-number text-4xl lg:text-5xl font-bold">ROT</div>
+            <div class="text-navy-300 text-sm mt-1">Avdrag ingår</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TJÄNSTER ============ -->
+    <section id="tjanster" class="relative py-24 lg:py-32 bg-slate-50" aria-labelledby="tjanster-heading">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Section header -->
+        <div class="reveal max-w-2xl mb-16">
+          <div class="copper-line mb-4"></div>
+          <h2 id="tjanster-heading" class="font-display text-4xl lg:text-5xl text-navy-700 mb-4">Våra tjänster</h2>
+          <p class="text-navy-500 text-lg font-light">Vi erbjuder helhetslösningar inom VVS — från det lilla droppande kranet till kompletta nyinstallationer.</p>
+        </div>
+
+        <!-- Service grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <!-- Service 1 -->
+          <article class="reveal reveal-delay-1 service-card bg-white rounded-2xl p-8 border border-slate-200/80 group">
+            <div class="w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-500 transition-colors duration-300">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-navy-700 mb-3">Komplett VVS</h3>
+            <p class="text-navy-500 leading-relaxed">Reparation, underhåll och service av alla typer av VVS-installationer i hem och fastigheter.</p>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="reveal reveal-delay-2 service-card bg-white rounded-2xl p-8 border border-slate-200/80 group">
+            <div class="w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-500 transition-colors duration-300">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-navy-700 mb-3">ROT-renovering</h3>
+            <p class="text-navy-500 leading-relaxed">Badrumsrenovering, kök och stambyten med ROT-avdrag. Vi sköter allt pappersarbete åt dig.</p>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="reveal reveal-delay-3 service-card bg-white rounded-2xl p-8 border border-slate-200/80 group">
+            <div class="w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-500 transition-colors duration-300">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-navy-700 mb-3">Akutjour</h3>
+            <p class="text-navy-500 leading-relaxed">Vattenläcka? Stopp i avloppet? Vi ställer upp snabbt med akut VVS-service dygnet runt.</p>
+          </article>
+
+          <!-- Service 4 -->
+          <article class="reveal reveal-delay-1 service-card bg-white rounded-2xl p-8 border border-slate-200/80 group">
+            <div class="w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-500 transition-colors duration-300">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-navy-700 mb-3">Nyinstallation</h3>
+            <p class="text-navy-500 leading-relaxed">Professionell installation av rör, vatten och avlopp vid nybyggnation och tillbyggnad.</p>
+          </article>
+
+          <!-- Service 5 -->
+          <article class="reveal reveal-delay-2 service-card bg-white rounded-2xl p-8 border border-slate-200/80 group">
+            <div class="w-14 h-14 bg-navy-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-500 transition-colors duration-300">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-navy-700 mb-3">Avloppspumpar</h3>
+            <p class="text-navy-500 leading-relaxed">Auktoriserad service och installation av avloppspumpar. Certifierad kompetens du kan lita på.</p>
+          </article>
+
+          <!-- CTA Card -->
+          <article class="reveal reveal-delay-3 relative bg-navy-700 noise-overlay rounded-2xl p-8 flex flex-col justify-between overflow-hidden group">
+            <div class="relative z-10">
+              <h3 class="font-display text-2xl text-white mb-3">Behöver du hjälp?</h3>
+              <p class="text-navy-200 leading-relaxed mb-8">Berätta vad du behöver så ger vi dig en kostnadsfri offert inom 24 timmar.</p>
+            </div>
+            <a href="#kontakt" class="relative z-10 inline-flex items-center justify-center gap-2 bg-copper-500 hover:bg-copper-600 text-white px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg">
+              Kontakta oss
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VARFÖR VÄLJA OSS ============ -->
+    <section id="om-oss" class="relative py-24 lg:py-32 overflow-hidden" aria-labelledby="om-oss-heading">
+      <!-- Decorative pipe element -->
+      <div class="absolute left-8 top-0 bottom-0 pipe-deco hidden xl:block" aria-hidden="true"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Image side -->
+          <div class="reveal relative">
+            <!-- BYT TILL KUNDENS EGEN BILD -->
+            <img
+              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=600&fit=crop&q=80"
+              alt="Rörmokare kontrollerar vatteninstallation i badrum"
+              class="rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
+              loading="lazy"
+            >
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -right-4 md:right-8 bg-white rounded-2xl shadow-xl p-5 border border-slate-100">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-copper-500/10 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-copper-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-2xl text-navy-700">100%</div>
+                  <div class="text-navy-400 text-sm">Nöjda kunder</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text side -->
+          <div>
+            <div class="reveal copper-line mb-4"></div>
+            <h2 id="om-oss-heading" class="reveal font-display text-4xl lg:text-5xl text-navy-700 mb-6">Varför välja Rör&#8209;Service?</h2>
+            <p class="reveal text-navy-500 text-lg font-light mb-10 leading-relaxed">
+              Med över 30 års erfarenhet i branschen och kontor i både Söderhamn och Stockholm vet vi vad som krävs för att leverera VVS-arbete av högsta kvalitet.
+            </p>
+
+            <div class="space-y-6">
+              <!-- USP 1 -->
+              <div class="reveal reveal-delay-1 flex gap-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-copper-500/10 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-navy-700 text-lg mb-1">Auktoriserade specialister</h3>
+                  <p class="text-navy-500 leading-relaxed">Certifierad kompetens och auktoriserad service för avloppspumpar och VVS-installationer.</p>
+                </div>
+              </div>
+
+              <!-- USP 2 -->
+              <div class="reveal reveal-delay-2 flex gap-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-copper-500/10 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-navy-700 text-lg mb-1">Snabb responstid</h3>
+                  <p class="text-navy-500 leading-relaxed">Akutjour dygnet runt. Vi förstår att VVS-problem inte väntar till kontorstid.</p>
+                </div>
+              </div>
+
+              <!-- USP 3 -->
+              <div class="reveal reveal-delay-3 flex gap-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-copper-500/10 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-navy-700 text-lg mb-1">ROT-avdrag ingår</h3>
+                  <p class="text-navy-500 leading-relaxed">Vi hanterar all administration kring ROT-avdraget — du betalar bara din del direkt.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section id="kontakt" class="relative py-24 lg:py-32 bg-navy-700 noise-overlay overflow-hidden" aria-labelledby="kontakt-heading">
+      <!-- Geometric accents -->
+      <div class="geo-accent w-60 h-60 -top-12 -right-12 rotate-45 hidden lg:block" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16">
+          <!-- Left: Info -->
+          <div>
+            <div class="reveal copper-line mb-4"></div>
+            <h2 id="kontakt-heading" class="reveal font-display text-4xl lg:text-5xl text-white mb-6">Kontakta oss</h2>
+            <p class="reveal text-navy-200 text-lg font-light mb-12 leading-relaxed">
+              Behöver du hjälp med VVS? Fyll i formuläret eller ring oss direkt. Vi återkommer med en offert inom 24 timmar.
+            </p>
+
+            <div class="space-y-8">
+              <!-- Phone -->
+              <div class="reveal reveal-delay-1 flex items-center gap-5">
+                <div class="w-14 h-14 bg-copper-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-navy-300 text-sm mb-1">Telefon</div>
+                  <a href="tel:0706213033" class="text-white text-xl font-semibold hover:text-copper-400 transition-colors">070-621 30 33</a>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="reveal reveal-delay-2 flex items-center gap-5">
+                <div class="w-14 h-14 bg-copper-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-navy-300 text-sm mb-1">E-post</div>
+                  <a href="mailto:info@ror-service.se" class="text-white text-xl font-semibold hover:text-copper-400 transition-colors">info@ror-service.se</a>
+                </div>
+              </div>
+
+              <!-- Locations -->
+              <div class="reveal reveal-delay-3 flex items-center gap-5">
+                <div class="w-14 h-14 bg-copper-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-navy-300 text-sm mb-1">Kontor</div>
+                  <div class="text-white text-xl font-semibold">Söderhamn & Stockholm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Form -->
+          <div class="reveal">
+            <form class="bg-white rounded-2xl p-8 lg:p-10 shadow-2xl" id="contact-form" novalidate>
+              <h3 class="font-display text-2xl text-navy-700 mb-6">Begär en kostnadsfri offert</h3>
+
+              <div class="space-y-5">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-navy-600 mb-1.5">Namn <span class="text-copper-500" aria-hidden="true">*</span></label>
+                  <input type="text" id="name" name="name" required autocomplete="name"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-navy-700 placeholder-navy-300 transition-colors focus:border-copper-500 bg-slate-50"
+                    placeholder="Ditt namn">
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-navy-600 mb-1.5">E-post <span class="text-copper-500" aria-hidden="true">*</span></label>
+                    <input type="email" id="email" name="email" required autocomplete="email"
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 text-navy-700 placeholder-navy-300 transition-colors focus:border-copper-500 bg-slate-50"
+                      placeholder="din@epost.se">
+                  </div>
+                  <div>
+                    <label for="phone" class="block text-sm font-medium text-navy-600 mb-1.5">Telefon</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel"
+                      class="w-full px-4 py-3 rounded-xl border border-slate-200 text-navy-700 placeholder-navy-300 transition-colors focus:border-copper-500 bg-slate-50"
+                      placeholder="07X-XXX XX XX">
+                  </div>
+                </div>
+
+                <div>
+                  <label for="service" class="block text-sm font-medium text-navy-600 mb-1.5">Typ av tjänst</label>
+                  <select id="service" name="service"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-navy-700 transition-colors focus:border-copper-500 bg-slate-50 appearance-none"
+                    style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231e3a5f' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 1rem center;">
+                    <option value="">Välj tjänst...</option>
+                    <option value="vvs">Komplett VVS-service</option>
+                    <option value="rot">ROT-renovering</option>
+                    <option value="akut">Akutjour</option>
+                    <option value="nyinstallation">Nyinstallation</option>
+                    <option value="avlopp">Avloppspumpar</option>
+                    <option value="annat">Annat</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-navy-600 mb-1.5">Meddelande <span class="text-copper-500" aria-hidden="true">*</span></label>
+                  <textarea id="message" name="message" rows="4" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 text-navy-700 placeholder-navy-300 transition-colors focus:border-copper-500 bg-slate-50 resize-none"
+                    placeholder="Beskriv vad du behöver hjälp med..."></textarea>
+                </div>
+
+                <!-- GDPR Consent -->
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="gdpr-consent" name="gdpr-consent" required
+                    class="mt-1 w-5 h-5 rounded border-slate-300 text-copper-500 cursor-pointer flex-shrink-0">
+                  <label for="gdpr-consent" class="text-sm text-navy-500 leading-relaxed cursor-pointer">
+                    Jag godkänner att Rör-Service lagrar mina uppgifter för att hantera min förfrågan, i enlighet med vår
+                    <a href="#integritetspolicy" class="text-copper-500 hover:text-copper-600 underline underline-offset-2">integritetspolicy</a>. <span class="text-copper-500" aria-hidden="true">*</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit"
+                class="mt-8 w-full bg-copper-500 hover:bg-copper-600 text-white py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/25 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                Skicka förfrågan
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-navy-900 py-12" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-copper-500 rounded-lg flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" />
+            </svg>
+          </div>
+          <span class="font-display text-lg text-white">Rör-Service</span>
+        </div>
+
+        <div class="flex items-center gap-6 text-sm text-navy-400">
+          <span>&copy; <script>document.write(new Date().getFullYear())</script> Rör-Service</span>
+          <span aria-hidden="true">|</span>
+          <a href="#integritetspolicy" class="hover:text-copper-400 transition-colors underline underline-offset-2">Integritetspolicy</a>
+        </div>
+
+        <div class="text-sm text-navy-500">
+          ——— Producerad av <a href="https://claytopmedia.se" class="text-copper-400 hover:text-copper-300 transition-colors font-medium">Claytop Media</a> ———
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ INTEGRITETSPOLICY (enkel) ============ -->
+  <div id="integritetspolicy" class="hidden target:block fixed inset-0 z-[100] bg-navy-900/80 backdrop-blur-sm overflow-y-auto">
+    <div class="max-w-2xl mx-auto my-16 bg-white rounded-2xl p-8 lg:p-12 relative">
+      <a href="#" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors" aria-label="Stäng integritetspolicy">
+        <svg class="w-5 h-5 text-navy-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </a>
+      <h2 class="font-display text-3xl text-navy-700 mb-6">Integritetspolicy</h2>
+      <div class="prose prose-navy text-navy-600 space-y-4 text-sm leading-relaxed">
+        <p><strong>Personuppgiftsansvarig:</strong> Rör-Service, info@ror-service.se</p>
+        <p><strong>Vilka uppgifter samlar vi in?</strong> Namn, e-postadress, telefonnummer och meddelande som du lämnar via kontaktformuläret.</p>
+        <p><strong>Varför?</strong> För att kunna hantera din förfrågan och kontakta dig med en offert.</p>
+        <p><strong>Rättslig grund:</strong> Samtycke (du godkänner behandlingen genom att kryssa i rutan i formuläret).</p>
+        <p><strong>Lagringstid:</strong> Dina uppgifter sparas i max 12 månader och raderas därefter om inget avtal har ingåtts.</p>
+        <p><strong>Dina rättigheter:</strong> Du har rätt att begära tillgång till, rättelse av eller radering av dina personuppgifter. Kontakta oss på info@ror-service.se.</p>
+        <p><strong>Tredje part:</strong> Vi delar inte dina uppgifter med tredje part utan ditt godkännande.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'shadow-navy-900/5');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'shadow-navy-900/5');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuClose.focus();
+    });
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+    menuClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+    // Scroll reveal (IntersectionObserver)
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Form validation (basic)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const gdpr = document.getElementById('gdpr-consent').checked;
+
+      if (!name || !email || !message) {
+        // In production: show inline errors
+        console.log('Validation: missing required fields');
+        return;
+      }
+      if (!gdpr) {
+        console.log('Validation: GDPR consent required');
+        return;
+      }
+
+      // Placeholder: in production, connect to backend/email service
+      this.innerHTML = '<div class="text-center py-12"><div class="w-16 h-16 bg-copper-500/10 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-copper-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div><h3 class="font-display text-2xl text-navy-700 mb-2">Tack för din förfrågan!</h3><p class="text-navy-500">Vi återkommer inom 24 timmar med en offert.</p></div>';
+    });
+  </script>
+
+</body>
+</html>

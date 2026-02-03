@@ -141,6 +141,11 @@
     .logo-subtext { color: rgba(255,255,255,0.7); transition: color 0.3s ease; }
     .scrolled .logo-text { color: #1e3a5f; }
     .scrolled .logo-subtext { color: #5a80b2; }
+
+    /* Nav links - white on hero, dark on scrolled */
+    .nav-link { transition: color 0.3s ease; }
+    .scrolled .nav-link { color: #2d5487 !important; }
+    .scrolled .nav-link:hover { color: #1e3a5f !important; }
   </style>
 </head>
 <body class="bg-white text-navy-800">
@@ -166,9 +171,9 @@
 
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-8">
-        <a href="#tjanster" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Tjänster</a>
-        <a href="#om-oss" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Om oss</a>
-        <a href="#kontakt" class="nav-link text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors">Kontakt</a>
+        <a href="#tjanster" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Tjänster</a>
+        <a href="#om-oss" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Om oss</a>
+        <a href="#kontakt" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Kontakt</a>
         <a href="tel:0706213033" class="inline-flex items-center gap-2 bg-copper-500 hover:bg-copper-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/25">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -466,7 +471,8 @@
               Behöver du hjälp med VVS? Fyll i formuläret eller ring oss direkt. Vi återkommer med en offert inom 24 timmar.
             </p>
 
-            <div class="space-y-8">
+            <!-- Main contact info -->
+            <div class="space-y-6 mb-10">
               <!-- Phone -->
               <div class="reveal reveal-delay-1 flex items-center gap-5">
                 <div class="w-14 h-14 bg-copper-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -479,17 +485,6 @@
                   <a href="tel:027018703" class="text-white text-xl font-semibold hover:text-copper-400 transition-colors">0270-187 03</a>
                   <span class="text-navy-400 mx-2">|</span>
                   <a href="tel:0706213033" class="text-white text-xl font-semibold hover:text-copper-400 transition-colors">070-621 30 33</a>
-                </div>
-              </div>
-
-              <!-- Team direct -->
-              <div class="reveal reveal-delay-2">
-                <div class="text-navy-300 text-sm mb-3">Ring direkt</div>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                  <a href="tel:0702133735" class="text-navy-200 hover:text-copper-400 transition-colors">Björn Westerberg <span class="text-navy-400">070-213 37 35</span></a>
-                  <a href="tel:0705816769" class="text-navy-200 hover:text-copper-400 transition-colors">Ove Malmgren <span class="text-navy-400">070-581 67 69</span></a>
-                  <a href="tel:0706008048" class="text-navy-200 hover:text-copper-400 transition-colors">John Inge Sundling <span class="text-navy-400">070-600 80 48</span></a>
-                  <a href="tel:0706008092" class="text-navy-200 hover:text-copper-400 transition-colors">Jan Svensson <span class="text-navy-400">070-600 80 92</span></a>
                 </div>
               </div>
 
@@ -506,7 +501,7 @@
                 </div>
               </div>
 
-              <!-- Locations -->
+              <!-- Location -->
               <div class="reveal reveal-delay-3 flex items-center gap-5">
                 <div class="w-14 h-14 bg-copper-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg class="w-6 h-6 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -519,6 +514,93 @@
                   <div class="text-white text-lg font-semibold">Norrtullsgatan 50, 826 37 Söderhamn</div>
                   <div class="text-navy-300 text-sm mt-1">Även verksamma i Stockholm</div>
                 </div>
+              </div>
+            </div>
+
+            <!-- Team direct - Nordic Craft design -->
+            <div class="reveal reveal-delay-4">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent via-copper-500/40 to-transparent"></div>
+                <h3 class="text-copper-400 text-sm font-semibold tracking-[0.2em] uppercase">Ring direkt</h3>
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent via-copper-500/40 to-transparent"></div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Björn -->
+                <a href="tel:0702133735" class="team-card group relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 transition-all duration-500 hover:border-copper-500/50 hover:shadow-[0_0_30px_rgba(232,119,34,0.15)] overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-copper-500/0 to-copper-500/0 group-hover:from-copper-500/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <div class="relative flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-copper-500 to-copper-600 flex items-center justify-center shadow-lg shadow-copper-500/20 group-hover:shadow-copper-500/40 transition-shadow duration-500">
+                      <span class="font-display text-white text-lg">BW</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-white font-medium truncate group-hover:text-copper-200 transition-colors">Björn Westerberg</div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <svg class="w-3.5 h-3.5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <span class="text-copper-300 text-sm font-medium tracking-wide">070-213 37 35</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- Ove -->
+                <a href="tel:0705816769" class="team-card group relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 transition-all duration-500 hover:border-copper-500/50 hover:shadow-[0_0_30px_rgba(232,119,34,0.15)] overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-copper-500/0 to-copper-500/0 group-hover:from-copper-500/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <div class="relative flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-copper-500 to-copper-600 flex items-center justify-center shadow-lg shadow-copper-500/20 group-hover:shadow-copper-500/40 transition-shadow duration-500">
+                      <span class="font-display text-white text-lg">OM</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-white font-medium truncate group-hover:text-copper-200 transition-colors">Ove Malmgren</div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <svg class="w-3.5 h-3.5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <span class="text-copper-300 text-sm font-medium tracking-wide">070-581 67 69</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- John Inge -->
+                <a href="tel:0706008048" class="team-card group relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 transition-all duration-500 hover:border-copper-500/50 hover:shadow-[0_0_30px_rgba(232,119,34,0.15)] overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-copper-500/0 to-copper-500/0 group-hover:from-copper-500/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <div class="relative flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-copper-500 to-copper-600 flex items-center justify-center shadow-lg shadow-copper-500/20 group-hover:shadow-copper-500/40 transition-shadow duration-500">
+                      <span class="font-display text-white text-lg">JS</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-white font-medium truncate group-hover:text-copper-200 transition-colors">John Inge Sundling</div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <svg class="w-3.5 h-3.5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <span class="text-copper-300 text-sm font-medium tracking-wide">070-600 80 48</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- Jan -->
+                <a href="tel:0706008092" class="team-card group relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 transition-all duration-500 hover:border-copper-500/50 hover:shadow-[0_0_30px_rgba(232,119,34,0.15)] overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-copper-500/0 to-copper-500/0 group-hover:from-copper-500/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <div class="relative flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-copper-500 to-copper-600 flex items-center justify-center shadow-lg shadow-copper-500/20 group-hover:shadow-copper-500/40 transition-shadow duration-500">
+                      <span class="font-display text-white text-lg">JS</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-white font-medium truncate group-hover:text-copper-200 transition-colors">Jan Svensson</div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <svg class="w-3.5 h-3.5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <span class="text-copper-300 text-sm font-medium tracking-wide">070-600 80 92</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
